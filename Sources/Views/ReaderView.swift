@@ -1487,7 +1487,10 @@ class ReaderViewModel: ObservableObject {
 
     private func applyReplaceRules(to value: String) -> String {
         let replaced = readingDataDAO.applyReplaceRules(to: value, bookUrl: book.bookUrl)
-        return ReaderTextFormatter.normalize(replaced)
+        let decoded = book.origin.contains("fanqienovel.com")
+            ? FanqieTextDecoder.decode(replaced)
+            : replaced
+        return ReaderTextFormatter.normalize(decoded)
     }
     
     // 字体大小调整方法

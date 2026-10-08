@@ -171,7 +171,11 @@ class BookSourceEngine {
             let next = try self.nextRequests(response: response, rule: contentRule.nextContentUrl, source: bookSource)
             return ([content], next)
         }
-        return pages.joined(separator: "\n")
+        let content = pages.joined(separator: "\n")
+        if bookSource.bookSourceUrl.contains("fanqienovel.com") {
+            return FanqieTextDecoder.decode(content)
+        }
+        return content
     }
 
     private func nextRequests(response: NetworkManager.Response, rule: String?, source: BookSource) throws -> [SourceRequest] {
