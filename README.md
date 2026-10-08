@@ -23,6 +23,16 @@ Legado for macOS 是基于 SwiftUI 的原生阅读器，目标是把 Android 版
 
 书源解析的已修复差异和兼容边界见 [Android 解析兼容性核对](Docs/Reference/AndroidParserCompatibility.md)。
 
+## 精简书源清单
+
+经过 macOS 端实际搜索和阅读验证后，公开工程只保留一份最小书源清单：[Resources/verified-book-sources.json](Resources/verified-book-sources.json)。它包含 3 个入口：
+
+- `穿越小说`：已验证可搜索、打开目录并阅读，作为唯一启用的全局搜索源。
+- `番茄小说·阿勒泰恐怖专线（冒险旅社）`：官方固定书目入口，默认禁用全局搜索，避免每个关键词都返回同一本书。
+- `豆瓣阅读·大唐还不还（官方）`：官方入口，默认禁用；付费章节按平台权限展示，不绕过购买限制。
+
+本清单只包含公开的书源规则，不包含本机的 `legado.db`、书架、章节正文、阅读进度、封面缓存或任何备份文件。应用运行数据仍保存在用户目录的 `Application Support/Legado/` 下。
+
 ## 界面预览
 
 界面采用 macOS 原生深色布局，覆盖书架、书源、订阅、阅读和项目介绍等主要使用场景。图片按两列排列，GitHub 页面会根据屏幕宽度自动缩放。

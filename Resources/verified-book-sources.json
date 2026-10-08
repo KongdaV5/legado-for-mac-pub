@@ -1,0 +1,114 @@
+[
+  {
+    "bookSourceUrl": "http://www.kk169.la/",
+    "bookSourceName": "穿越小说",
+    "bookSourceGroup": "校验可用",
+    "bookSourceType": 0,
+    "enabled": true,
+    "enabledExplore": false,
+    "searchUrl": "modules/article/search.php?q={{key}}",
+    "ruleSearch": {
+      "intro": "div.c_description@text",
+      "wordCount": "span:nth-of-type(6)@text",
+      "coverUrl": "img@src",
+      "author": "div.c_tag:nth-of-type(2) span:nth-of-type(2)@text",
+      "bookUrl": "div.c_row a[href*=\"/html/\"]@href",
+      "lastChapter": ".c_value a@text",
+      "bookList": "div.c_row",
+      "name": ".c_subject a@text",
+      "kind": "div.c_tag:nth-of-type(2) span:nth-of-type(4)@text"
+    },
+    "ruleBookInfo": {
+      "name": "h1@text",
+      "author": "h1 span:nth-of-type(1)@text"
+    },
+    "ruleToc": {
+      "chapterList": "ul.chapters li",
+      "chapterName": "a@text",
+      "chapterUrl": "a@href",
+      "nextTocUrl": ""
+    },
+    "ruleContent": {
+      "content": "#acontent@text",
+      "nextContentUrl": ""
+    }
+  },
+  {
+    "bookSourceUrl": "https://fanqienovel.com#冒险旅社",
+    "bookSourceName": "番茄小说·阿勒泰恐怖专线（冒险旅社）",
+    "bookSourceGroup": "本次修复（固定书目）",
+    "bookSourceType": 0,
+    "bookUrlPattern": "https://fanqienovel.com/page/.*",
+    "enabled": false,
+    "enabledExplore": false,
+    "searchUrl": "https://fanqienovel.com/keyword/7485841613324191744",
+    "ruleSearch": {
+      "bookList": "div.book-detail",
+      "name": "a.book-title@text",
+      "author": "div.author@text",
+      "bookUrl": "a.book-title@href",
+      "coverUrl": "img.book-cover@src",
+      "intro": "div.desc-content@text",
+      "kind": "div.book-tags@text",
+      "lastChapter": "a.new-update@text",
+      "wordCount": "div.num-wrap@text"
+    },
+    "ruleBookInfo": {
+      "name": "div.info-name h1@text",
+      "author": "div.author-name-text@text",
+      "coverUrl": "img.book-cover-img@src",
+      "intro": "div.page-abstract-content@text",
+      "kind": "div.info-label@text",
+      "lastChapter": "div.info-last-title@text",
+      "wordCount": "div.info-count@text"
+    },
+    "ruleToc": {
+      "chapterList": "div.chapter div.chapter-item",
+      "chapterName": "a@text",
+      "chapterUrl": "a@href",
+      "nextTocUrl": ""
+    },
+    "ruleContent": {
+      "content": "div.muye-reader-content@text",
+      "nextContentUrl": ""
+    }
+  },
+  {
+    "bookSourceUrl": "https://read.douban.com#大唐还不还",
+    "bookSourceName": "豆瓣阅读·大唐还不还（官方）",
+    "bookSourceGroup": "本次修复（官方入口）",
+    "bookSourceType": 0,
+    "enabled": false,
+    "enabledExplore": false,
+    "header": {
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Version/17.0 Safari/605.1.15",
+      "Referer": "https://read.douban.com/"
+    },
+    "searchUrl": "https://read.douban.com/column/66552954/",
+    "ruleSearch": {
+      "bookList": "meta[property=\"og:novel:book_name\"]",
+      "name": "@content",
+      "bookUrl": "https://read.douban.com/column/66552954/"
+    },
+    "ruleBookInfo": {
+      "name": "[property=\"og:novel:book_name\"]@content",
+      "author": "[property=\"og:novel:author\"]@content",
+      "coverUrl": "[property=\"og:image\"]@content",
+      "intro": "[property=\"og:description\"]@content",
+      "kind": "[property=\"og:novel:category\"]@content",
+      "lastChapter": "[property=\"og:novel:latest_chapter_name\"]@content"
+    },
+    "ruleToc": {
+      "chapterList": "article",
+      "chapterName": "h1@text",
+      "chapterUrl": "https://read.douban.com/reader/column/66552954/chapter/484244811/",
+      "isVip": "",
+      "nextTocUrl": ""
+    },
+    "ruleContent": {
+      "content": "article@text",
+      "nextContentUrl": ""
+    },
+    "bookSourceComment": "官方入口；付费章节遵守平台权限，不绕过购买限制。"
+  }
+]
