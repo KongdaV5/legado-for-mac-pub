@@ -1659,7 +1659,7 @@ class BookSourceEngine {
 
         if RegexOnlyOneParser.isOnlyOneRule(contentRule),
            let result = try RegexOnlyOneParser.parse(rule: contentRule, content: source) {
-            return result
+            return ReaderTextFormatter.normalize(result)
         }
         
         // 检查是否是JSON响应
@@ -1673,10 +1673,12 @@ class BookSourceEngine {
             
             // 应用替换规则
             if let replaceRegex = rule.replaceRegex {
-                return applyReplaceRule(content: content, replaceRule: replaceRegex)
+                return ReaderTextFormatter.normalize(
+                    applyReplaceRule(content: content, replaceRule: replaceRegex)
+                )
             }
             
-            return content
+            return ReaderTextFormatter.normalize(content)
         }
         
         // CSS选择器解析
@@ -1722,7 +1724,7 @@ class BookSourceEngine {
             content = applyReplaceRule(content: content, replaceRule: replaceRegex)
         }
         
-        return content
+        return ReaderTextFormatter.normalize(content)
     }
     
     // 使用JSON解析章节内容
@@ -1751,7 +1753,7 @@ class BookSourceEngine {
         }
         
         print("✅ 最终返回内容长度: \(content.count)")
-        return content
+        return ReaderTextFormatter.normalize(content)
     }
     
     // 应用替换规则

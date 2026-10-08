@@ -92,6 +92,7 @@ struct ReaderView: View {
                             Text(viewModel.content)
                                 .font(.system(size: viewModel.fontSize))
                                 .lineSpacing(viewModel.lineSpacing)
+                                .multilineTextAlignment(.leading)
                                 .foregroundColor(viewModel.textColor)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .background(
@@ -1485,7 +1486,8 @@ class ReaderViewModel: ObservableObject {
     }
 
     private func applyReplaceRules(to value: String) -> String {
-        readingDataDAO.applyReplaceRules(to: value, bookUrl: book.bookUrl)
+        let replaced = readingDataDAO.applyReplaceRules(to: value, bookUrl: book.bookUrl)
+        return ReaderTextFormatter.normalize(replaced)
     }
     
     // 字体大小调整方法
