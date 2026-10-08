@@ -1,39 +1,5 @@
 [
   {
-    "bookSourceUrl": "http://www.kk169.la/",
-    "bookSourceName": "穿越小说",
-    "bookSourceGroup": "校验可用",
-    "bookSourceType": 0,
-    "enabled": true,
-    "enabledExplore": false,
-    "searchUrl": "modules/article/search.php?q={{key}}",
-    "ruleSearch": {
-      "intro": "div.c_description@text",
-      "wordCount": "span:nth-of-type(6)@text",
-      "coverUrl": "img@src",
-      "author": "div.c_tag:nth-of-type(2) span:nth-of-type(2)@text",
-      "bookUrl": "div.c_row a[href*=\"/html/\"]@href",
-      "lastChapter": ".c_value a@text",
-      "bookList": "div.c_row",
-      "name": ".c_subject a@text",
-      "kind": "div.c_tag:nth-of-type(2) span:nth-of-type(4)@text"
-    },
-    "ruleBookInfo": {
-      "name": "h1@text",
-      "author": "h1 span:nth-of-type(1)@text"
-    },
-    "ruleToc": {
-      "chapterList": "ul.chapters li",
-      "chapterName": "a@text",
-      "chapterUrl": "a@href",
-      "nextTocUrl": ""
-    },
-    "ruleContent": {
-      "content": "#acontent@html",
-      "nextContentUrl": ""
-    }
-  },
-  {
     "bookSourceUrl": "https://fanqienovel.com#冒险旅社",
     "bookSourceName": "番茄小说·阿勒泰恐怖专线（冒险旅社）",
     "bookSourceGroup": "本次修复（固定书目）",
@@ -110,5 +76,176 @@
       "nextContentUrl": ""
     },
     "bookSourceComment": "官方入口；付费章节遵守平台权限，不绕过购买限制。"
+  },
+  {
+    "bookSourceComment": "来源：aoaostar/legado release/2a1f129b.json；2026-10-08 筛选。API 搜索、目录、正文链路已验证；作品覆盖取决于平台上架状态。",
+    "bookSourceGroup": "精选·API/HTML",
+    "bookSourceName": "米读小说",
+    "bookSourceType": 0,
+    "bookSourceUrl": "https://api.midukanshu.com/",
+    "bookUrlPattern": "",
+    "customOrder": 100,
+    "enabled": true,
+    "enabledCookieJar": false,
+    "enabledExplore": true,
+    "exploreUrl": "",
+    "lastUpdateTime": 1682656073635,
+    "loginUrl": "",
+    "respondTime": 499,
+    "ruleBookInfo": {
+      "init": "",
+      "lastChapter": "$.[-1].title"
+    },
+    "ruleContent": {
+      "content": "$..content##\\u0010|（未完待续）",
+      "replaceRegex": ""
+    },
+    "ruleExplore": {
+      "author": "",
+      "bookList": "",
+      "bookUrl": "",
+      "coverUrl": "",
+      "intro": "",
+      "kind": "",
+      "name": "",
+      "wordCount": ""
+    },
+    "ruleReview": {},
+    "ruleSearch": {
+      "author": "$.author",
+      "bookList": "$.data.*",
+      "bookUrl": "https://book.midukanshu.com/book/chapter_list/100/{{$.book_id}}.txt",
+      "coverUrl": "$.cover",
+      "intro": "$.description",
+      "kind": "{$.score}分&&$..name&&$.category",
+      "lastChapter": "",
+      "name": "$.title##（+.*|.*最新章节|\\(+.*",
+      "wordCount": "$.word_count"
+    },
+    "ruleToc": {
+      "chapterList": "$.[*]",
+      "chapterName": "$.title",
+      "chapterUrl": "https://book.midukanshu.com/book/chapter/segment/master/{{$.bookId}}_{{$.chapterId}}.txt?md5={{$.content_md5}}",
+      "isVip": "",
+      "updateTime": ""
+    },
+    "searchUrl": "https://apiwz.midukanshu.com/fiction/search/search,{\n  \"method\": \"POST\",\n  \"body\": \"device=865166023475380&app=midu&keyword={{key}}&page={{page-1}}\"\n}",
+    "weight": 0
+  },
+  {
+    "bookSourceComment": "来源：aoaostar/legado release/2a1f129b.json；2026-10-08 筛选。HTTPS API、详情、目录、正文链路已验证；作品覆盖取决于平台上架状态。",
+    "bookSourceGroup": "精选·API/HTML",
+    "bookSourceName": "阅友小说",
+    "bookSourceType": 0,
+    "bookSourceUrl": "https://sma.yueyouxs.com",
+    "bookUrlPattern": "",
+    "customOrder": 101,
+    "enabled": true,
+    "enabledCookieJar": false,
+    "enabledExplore": true,
+    "exploreUrl": "[{\"title\":\"都市人生\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=1100&page={{page}}&\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"玄幻奇幻\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=1101&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"仙侠武侠\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=1102&page={{page}}&\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"军事历史\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=1103&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"科幻末世\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=1104&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"游戏体育\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=1105&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"现代言情\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=2100&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"古代言情\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=2101&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"幻想言情\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=2102&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"青春校园\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=2103&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"穿越时空\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=2104&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"宫闱争斗\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=2105&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"豪门总裁\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=2106&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"婚恋爱情\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=2107&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"经商种田\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=2108&page={{page}}\",\"style\":{\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},\n{\"title\":\"推理悬疑\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=3100&page={{page}}\",\"style\":{\"layout_flexGrow\":0,\"layout_flexBasisPercent\":0.29}},\n{\"title\":\"出版读物\",\"url\":\"http://sma.yueyouxs.com/api/book/classify?site_id=&classify_id=3101&page={{page}}\",\"style\":{\"layout_flexGrow\":0,\"layout_flexBasisPercent\":0.29}}]",
+    "header": "<js>\n(()=>{\n\tvar ua = \"Mozilla/5.0 (Linux; U; Android 10; zh-Hans-CN; PCT-AL10 Build/HUAWEIPCT-AL10) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 Quark/4.0.5.137 Mobile Safari/537.36\";\n\tvar heders = {\"User-Agent\": ua};\n\treturn JSON.stringify(heders);\n})()\n</js>",
+    "lastUpdateTime": 1683550941101,
+    "loginUrl": "",
+    "respondTime": 706,
+    "ruleBookInfo": {
+      "author": "class.v-words flex.0@text##作者：",
+      "coverUrl": "class.adMessage@img@src",
+      "init": "",
+      "intro": "id.intro@text",
+      "kind": "",
+      "lastChapter": "class.chapter-entrance flex-item@text",
+      "name": "class.face-info-title@text##\\（.*|\\(.*|免费阅读|全文.*阅读|最新章节",
+      "tocUrl": "class.sumchapter@tag.span@tag.a@href",
+      "wordCount": "class.v-words flex.2@text##字数："
+    },
+    "ruleContent": {
+      "content": "class.con@html##（本章完）|（本章未完，请翻页）|.*书友群.*",
+      "imageStyle": "0",
+      "nextContentUrl": "",
+      "replaceRegex": "",
+      "sourceRegex": "",
+      "webJs": ""
+    },
+    "ruleExplore": {
+      "author": "$.authorName",
+      "bookList": "$..list[*]",
+      "bookUrl": "http://sma.yueyouxs.com/b/{$.wapBookId}.html",
+      "coverUrl": "$.bookPic",
+      "intro": "$.intro",
+      "kind": "$.classifySecondName&&\n$.updateTime&&\n$.classifyName",
+      "lastChapter": "$.latestChapterName",
+      "name": "$.bookName",
+      "wordCount": "$.words"
+    },
+    "ruleReview": {},
+    "ruleSearch": {
+      "author": "$.authorName",
+      "bookList": "$..list[*]",
+      "bookUrl": "https://sma.yueyouxs.com/b/{{$.wapBookId}}.html",
+      "coverUrl": "$.bookPic",
+      "intro": "$.intro",
+      "kind": "$.classifySecondName&&\n$.updateTime&&\n$.classifyName",
+      "lastChapter": "$.latestChapterName",
+      "name": "$.bookName##\\（.*|\\(.*|免费阅读|全文.*阅读|最新章节",
+      "wordCount": "$.words"
+    },
+    "ruleToc": {
+      "chapterList": "class.catalog_ls@li",
+      "chapterName": "tag.a@text",
+      "chapterUrl": "tag.a@href",
+      "isVip": "",
+      "nextTocUrl": "",
+      "updateTime": ""
+    },
+    "searchUrl": "https://sma.yueyouxs.com/api/book/search?keyword={{key}}&page={{page}}",
+    "weight": 0
+  },
+  {
+    "bookSourceGroup": "精选·API/HTML",
+    "bookSourceName": "酷我小说",
+    "bookSourceType": 0,
+    "bookSourceUrl": "https://appi.kuwo.cn",
+    "customOrder": 102,
+    "enabled": true,
+    "enabledCookieJar": true,
+    "enabledExplore": true,
+    "header": "{\n\t\"Accept\": \"*/*\",\n\t\"Connection\": \"Close\",\n\t\"User-Agent\": \"Dalvik/2.1.0 (Linux; U; Android 8.0.0; LND-AL40 Build/HONORLND-AL40)\"\n}",
+    "lastUpdateTime": 1713846723225,
+    "respondTime": 5653,
+    "ruleBookInfo": {
+      "author": "$.author_name",
+      "coverUrl": "$.cover_url",
+      "init": "$.data",
+      "intro": "$.intro##(^|[。！？]+[”」）】]?)##$1<br>",
+      "kind": "{{$.category_name}},{{$.status}},{{$.update_time}}@js:result.replace(/30/,\"连载\").replace(/50/,\"完结\").replace(/\\s..:.*/,\"\")",
+      "lastChapter": "$.new_chapter_name##正文卷.|正文.|VIP卷.|默认卷.|卷_|VIP章节.|免费章节.|章节目录.|最新章节.|[\\(（【].*?[求更票谢乐发订合补加架字修Kk].*?[】）\\)]",
+      "name": "$.title",
+      "tocUrl": "/novels/api/book/{{$.book_id}}/chapters?paging=0",
+      "wordCount": "$.all_words"
+    },
+    "ruleContent": {
+      "content": "$.data.content"
+    },
+    "ruleExplore": {},
+    "ruleSearch": {
+      "author": "$.author_name",
+      "bookList": "$.data[*]",
+      "bookUrl": "/novels/api/book/{{$.book_id}}",
+      "coverUrl": "$.cover_url",
+      "intro": "$.intro",
+      "kind": "{{$.category_name}},{{$.status}}@js:result.replace(/30/,\"连载\").replace(/50/,\"完结\")",
+      "name": "$.title",
+      "wordCount": "$.all_words"
+    },
+    "ruleToc": {
+      "chapterList": "$.data[*]",
+      "chapterName": "$.chapter_title##正文卷.|正文.|VIP卷.|默认卷.|卷_|VIP章节.|免费章节.|章节目录.|最新章节.|[\\(（【].*?[求更票谢乐发订合补加架字修Kk].*?[】）\\)]",
+      "chapterUrl": "/novels/api/book/{{$.book_id}}/chapters/{{$.chapter_id}}",
+      "updateTime": "{{$.volume_name}}•{{$.original_words}}字"
+    },
+    "searchUrl": "/novels/api/book/search?keyword={{key}}&pi={{page}}&ps=30",
+    "weight": 50,
+    "bookSourceComment": "来源：aoaostar/legado release/71e56d4f.json；2026-10-08 筛选。HTTPS API 搜索、详情、目录、正文链路已验证；作品覆盖取决于平台上架状态。"
   }
 ]

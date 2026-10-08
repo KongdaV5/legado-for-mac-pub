@@ -42,6 +42,8 @@ final class RuleFixtureProtocol: URLProtocol, @unchecked Sendable {
             reply("<div class='article'><p>正文二</p></div><option value='./'>循环</option>", final: request.url!.absoluteString)
         case "/mirror/content/three":
             reply("<div class='article'><p>正文三</p></div>", final: request.url!.absoluteString)
+        case "/array-content":
+            reply(#"[{"content":"数组正文一"},{"content":"数组正文二"}]"#, final: request.url!.absoluteString)
         case "/retry": reply("ok", final: request.url!.absoluteString, status: retry < 2 ? 503 : 200)
         default: reply("unknown", final: request.url!.absoluteString, status: 404)
         }
@@ -144,6 +146,13 @@ func runAdvancedRegression() async throws {
     check(chapters.map(\.title) == ["一", "二", "三"], "multi-page directory dedup")
     let content = try await engine.getChapterContent(chapter: BookChapter(url: "https://fixture.test/content", title: "正文", bookUrl: book.bookUrl, index: 0), bookSource: source)
     check(content == "正文一\n正文二\n正文三", "multi-page content order: \(content)")
+    var arraySource = source
+    arraySource.ruleContent = ContentRule(content: "$..content")
+    let arrayContent = try await engine.getChapterContent(
+        chapter: BookChapter(url: "https://fixture.test/array-content", title: "数组正文", bookUrl: book.bookUrl, index: 0),
+        bookSource: arraySource
+    )
+    check(arrayContent.contains("数组正文一") && arrayContent.contains("数组正文二"), "JSON array content parsing: \(arrayContent)")
     let retry = try await network.fetch(SourceRequest.parse("/retry,{\"retry\":1}", baseURL: "https://fixture.test/"))
     check(retry.text == "ok", "transient retry")
     let task = Task { try await network.get(url: "https://fixture.test/slow") }

@@ -1667,7 +1667,8 @@ class BookSourceEngine {
         }
         
         // 检查是否是JSON响应
-        if source.trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("{") {
+        let trimmedSource = source.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmedSource.hasPrefix("{") || trimmedSource.hasPrefix("[") {
             return try parseContentWithJSON(json: source, rule: rule)
         }
         

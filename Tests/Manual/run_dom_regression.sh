@@ -8,7 +8,7 @@ bin_dir="$(swift build --show-bin-path)"
 swiftc -I "$bin_dir/Modules" -I .build/checkouts/swift-atomics/Sources/_AtomicsShims/include \
   Sources/BookSource/{BookSourceEngine,LegacyRuleEvaluator,LegadoRuleParser,RuleAnalyzer,RuleConnector,JavaScriptEngine,RuleTemplate,SourceRequest,SourcePagination,JSONPathEvaluator,XPathRuleEvaluator}.swift \
   Sources/Models/{Book,BookChapter,BookSource}.swift \
-  Sources/Utils/{FileUtils,Config}.swift Sources/Network/NetworkManager.swift \
+  Sources/Utils/{FileUtils,Config,ReaderTextFormatter,FanqieTextDecoder}.swift Sources/Network/NetworkManager.swift \
   Tests/Manual/DOMRuleRegression.swift Tests/Manual/AdvancedRuleRegression.swift \
   "$bin_dir"/SwiftSoup.build/*.o "$bin_dir"/Atomics.build/*.o "$bin_dir"/LRUCache.build/*.o "$bin_dir"/_AtomicsShims.build/src/*.o \
   -o "$bin_dir/dom-rule-regression"
