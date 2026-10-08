@@ -46,10 +46,7 @@
     "bookSourceType": 0,
     "enabled": false,
     "enabledExplore": false,
-    "header": {
-      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Version/17.0 Safari/605.1.15",
-      "Referer": "https://read.douban.com/"
-    },
+    "header": "{\n\t\"User-Agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Version/17.0 Safari/605.1.15\",\n\t\"Referer\":\"https://read.douban.com/\"\n}",
     "searchUrl": "https://read.douban.com/column/66552954/",
     "ruleSearch": {
       "bookList": "meta[property=\"og:novel:book_name\"]",
@@ -247,5 +244,88 @@
     "searchUrl": "/novels/api/book/search?keyword={{key}}&pi={{page}}&ps=30",
     "weight": 50,
     "bookSourceComment": "来源：aoaostar/legado release/71e56d4f.json；2026-10-08 筛选。HTTPS API 搜索、详情、目录、正文链路已验证；作品覆盖取决于平台上架状态。"
+  },
+  {
+    "bookSourceUrl": "https://fanqienovel.com#官方通用",
+    "bookSourceName": "番茄小说·官方网页/API（通用）",
+    "bookSourceGroup": "精选·官方",
+    "bookSourceType": 0,
+    "bookUrlPattern": "https://fanqienovel.com/page/.*",
+    "enabled": true,
+    "enabledExplore": false,
+    "searchUrl": "https://novel.snssdk.com/api/novel/channel/homepage/search/search/v1/?device_platform=android&parent_enterfrom=novel_channel_search.tab.&offset={{(page-1)*10}}&aid=1967&q={{key}}",
+    "ruleSearch": {
+      "author": "author##</?em>",
+      "bookList": "$.data.ret_data.*||$..book_info[*]",
+      "bookUrl": "https://fanqienovel.com/page/{{$.book_id}}",
+      "checkKeyWord": "女装就能刷buff？那我太行了",
+      "coverUrl": "thumb_url",
+      "intro": "abstract",
+      "kind": "category&&score",
+      "lastChapter": "https://novel.snssdk.com/api/novel/book/directory/list/v1?device_platform=android&parent_enterfrom=novel_channel_search.tab.&aid=1967&book_id=@get:{book_id}\n<js>\nvar detail = JSON.parse(java.ajax(result));\nvar info = detail[\"data\"][\"book_info\"];\ninfo[\"last_chapter_title\"].replace(\"小说：\",\"\")+\"•\"+java.timeFormat(info[\"last_chapter_update_time\"]*1000);\n</js>",
+      "name": "book_name||title",
+      "wordCount": "连载{{$.creation_status}}完结##连载0|1完结"
+    },
+    "ruleBookInfo": {
+      "name": "div.info-name h1@text",
+      "author": "div.author-name-text@text",
+      "coverUrl": "img.book-cover-img@src",
+      "intro": "div.page-abstract-content@text",
+      "kind": "div.info-label@text",
+      "lastChapter": "div.info-last-title@text",
+      "wordCount": "div.info-count@text"
+    },
+    "ruleToc": {
+      "chapterList": "div.chapter_item",
+      "chapterName": "a.chapter-title@text",
+      "chapterUrl": "a.chapter-title@href",
+      "nextTocUrl": ""
+    },
+    "ruleContent": {
+      "content": "@js:\nvar marker = 'window.__INITIAL_STATE__';\nvar markerStart = result.indexOf(marker);\nif (markerStart < 0) { return ''; }\nvar jsonStart = result.indexOf('{', markerStart + marker.length);\nif (jsonStart < 0) { return ''; }\nvar depth = 0;\nvar inString = false;\nvar escaped = false;\nvar jsonEnd = -1;\nfor (var i = jsonStart; i < result.length; i++) {\n  var ch = result.charAt(i);\n  if (inString) {\n    if (escaped) { escaped = false; }\n    else if (ch == String.fromCharCode(92)) { escaped = true; }\n    else if (ch == String.fromCharCode(34)) { inString = false; }\n  } else if (ch == String.fromCharCode(34)) { inString = true; }\n  else if (ch == '{') { depth++; }\n  else if (ch == '}') { depth--; if (depth == 0) { jsonEnd = i + 1; break; } }\n}\nif (jsonEnd < 0) { return ''; }\nvar state = JSON.parse(result.substring(jsonStart, jsonEnd));\nreturn state.reader.chapterData.content || '';\n",
+      "nextContentUrl": ""
+    },
+    "bookSourceComment": "官方搜索接口 + 官方网页阅读；不绕过付费章节。",
+    "header": "{\n\t\"user-agent\":\"Mozilla/5.0 (Linux; Android 10; TAS-AN00 Build/HUAWEITAS-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/114.0.5735.61 Mobile Safari/537.36 Super 4.6.5\"\n}"
+  },
+  {
+    "bookSourceName": "起点中文网·移动版（通用）",
+    "bookSourceUrl": "https://m.qidian.com#官方移动版",
+    "bookSourceGroup": "精选·官方HTML",
+    "bookSourceType": 0,
+    "bookUrlPattern": "https://m.qidian.com/book/.*",
+    "enabled": true,
+    "enabledExplore": false,
+    "header": "{\"User-Agent\":\"Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 Chrome/120 Mobile Safari/537.36\"}",
+    "searchUrl": "https://m.qidian.com/search?kw={{key}}",
+    "ruleSearch": {
+      "bookList": "div.y-list__item",
+      "name": "h2._searchBookName_lrbl7_250@text",
+      "author": "p._searchBookAuthor_lrbl7_429@text",
+      "bookUrl": "a@data-bid@js:'https://m.qidian.com/book/'+result+'/'",
+      "coverUrl": "img[data-src]@data-src",
+      "intro": "p._searchBookDesc_lrbl7_337@text",
+      "kind": "div._tags_e9qzy_161@text"
+    },
+    "ruleBookInfo": {
+      "name": "meta[property='og:novel:book_name']@content",
+      "author": "meta[property='og:novel:author']@content",
+      "coverUrl": "meta[property='og:image']@content",
+      "intro": "meta[property='og:description']@content",
+      "kind": "meta[property='og:novel:category']@content",
+      "lastChapter": "meta[property='og:novel:latest_chapter_name']@content",
+      "tocUrl": "a#details-menu@href"
+    },
+    "ruleToc": {
+      "chapterList": "a._chapterItem_1x6xn_579",
+      "chapterName": "h2@text",
+      "chapterUrl": "href",
+      "nextTocUrl": ""
+    },
+    "ruleContent": {
+      "content": "main.content@html",
+      "nextContentUrl": ""
+    },
+    "bookSourceComment": "起点中文网官方移动网页入口；只读取公开可访问章节，不绕过付费限制。"
   }
 ]
